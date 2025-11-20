@@ -26,7 +26,7 @@ endif
 
 function! s:highlightFromGroup(group) abort
     let l:synid = synIDtrans(hlID(a:group))
-    let [l:ctermfg, l:guifg] = [synIDattr(l:synid, 'fg', 'cterm'), synIDattr(l:synid, 'fg', 'gui')]
+    let [l:ctermfg, l:guifg] = [synIDattr(l:synid, 'fg', 'cterm'), synIDattr(l:synid, 'fg', 'gui')]->map({_, v -> empty(v) ? 'NONE' : v})
     return 'cterm=NONE ctermfg=' . l:ctermfg . ' ctermbg=NONE gui=NONE guifg=' . l:guifg . ' guibg=NONE'
 endfunction
 
